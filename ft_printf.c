@@ -13,39 +13,42 @@
 
 #include <stdio.h> 
 #include <stdarg.h>
+#include <unistd.h>
 
-int	ft_printf(const char*, ...);
-
-int	main(void)
-{
-	printf("Testing Variadic Functions\n");
-	ft_printf("Hello");
-	return (0);
-}
-
-int	ft_printf(const char*, ...)
+int	ft_printf(const char* str, ...)
 {
 	int		i;
-	va_list	argptr;
+	char	let;
 
 	i = 0;
-	va_start(argptr, number);
-	printf("number = %d \n", number);
-	while (i < number)
+	va_list	argptr;
+	va_start(argptr, str);
+	while (*str)
 	{
-		printf("Numbers %d \n", va_arg(argptr, int));
-		i = i + 1;
+		if (*str == '%')
+		{
+			str++;
+			if (*str == 'c')
+			{
+				let = va_arg(argptr, int);
+				write(1, &let, 1);
+			}
+			if (*str == 'd')
+			{
+				let = va_arg(argptr, int) + '0';
+				write(1, &let, 1);
+			}			
+		}
+		else
+			write(1, str, 1);
+		str++;
 	}
 	va_end(argptr);
 	return (0);
 }
 
-
-/* Cases to consider:
-Full text, string or character
-Number base 10
-Number Hex
-Pointer address
-Combination of both
-*/
-
+int	main(void)
+{
+	ft_printf("Hello this %d is a %c", 6, 'G');
+	return (0);
+}
