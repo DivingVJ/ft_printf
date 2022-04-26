@@ -2,16 +2,17 @@
 
 /* putstr_fd - opens an external file and writes in  string s */
 /* Protected - null *c */
-void	ft_putstr_fd(char *c, int fd)
+int	ft_putstr_fd(char *c, int fd)
 {
-	int	i;
+	int	len;
 
-	i = 0;
+	len = 0;
 	if (fd == -1 || c == NULL)
-		return ;
-	while (c[i] != '\0')
+		return (0);
+	while (*c != '\0')
 	{
-		write(fd, &c[i], 1);
-		i++;
+		len = len + ft_putchar_fd(*c, fd);
+		c++;
 	}
+	return (len);
 }
