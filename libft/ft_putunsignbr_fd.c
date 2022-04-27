@@ -1,7 +1,7 @@
 #include "libft.h"
 
 /* putunsignbr_fd - opens an external file and writes in  unsigned int n */
-int	ft_putunsignbr_fd(unsigned int n, int fd)
+int	ft_putunsignbr_fd(unsigned long n, int fd)
 {
 	char	c;
 	int		len;
