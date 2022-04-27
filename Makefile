@@ -5,7 +5,7 @@ CFLAG = -Wall -Wextra -Werror
 SRC =	ft_printf.c
 
 OBJ = $(patsubst %.c, %.o, $(SRC))
-DEP = $(patsubst %.a, %.h, $(NAME))
+#DEP = $(patsubst %.a, %.h, $(NAME))
 
 LIBFT_PATH = libft/
 
