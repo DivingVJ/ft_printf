@@ -1,4 +1,3 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -7,48 +6,75 @@
 /*   By: vvelayut <vvelayut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 19:00:29 by vvelayut          #+#    #+#             */
-/*   Updated: 2022/04/06 19:00:29 by vvelayut         ###   ########.fr       */
+/*   Updated: 2022/04/27 12:03:40 by vvelayut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h> 
-#include <stdarg.h>
-#include <unistd.h>
+#include "libftprintf.h"
+#include "libft/libft.h"
 
-int	ft_printf(const char* str, ...)
+char	check_format(const char *str, va_list argptr)
+{
+	char			format;
+	int				num;
+	char*			word;
+
+	format = '\0';
+	if (*str == 'c')
+	{
+
+	}
+		if (*str == 's')
+	{
+		word = va_arg(argptr, char*);
+		ft_putstr_fd(word, 1);
+	}
+	if ((*str == 'd') || (*str == 'i'))
+	{
+		num = va_arg(argptr, int);
+		ft_putnbr_fd(num, 1);
+	}	
+	if (*str == 'u')
+	{
+//		unum = va_arg(argptr, int);
+		ft_putunsignbr_fd(va_arg(argptr, int), 1);
+	}		
+	if (*str == '%')
+	{
+		write(1, "%", 1);
+	} 
+	return (format);
+}
+
+int	ft_printf(const char *str, ...)
 {
 	int		i;
-	char	let;
+	int		num;
+	va_list	argptr;
+	int		count;
+	int		total;
 
 	i = 0;
-	va_list	argptr;
+	num = 0;
+	count = 0;
+	total = 0;
 	va_start(argptr, str);
 	while (*str)
 	{
-		if (*str == '%')
+		if ((*str == '%') && (*str + 1 != '\0'))	
 		{
 			str++;
-			if (*str == 'c')
-			{
-				let = va_arg(argptr, int);
-				write(1, &let, 1);
-			}
-			if (*str == 'd')
-			{
-				let = va_arg(argptr, int) + '0';
-				write(1, &let, 1);
-			}			
+			count = check_format(str, argptr);
 		}
 		else
+		{
 			write(1, str, 1);
+			num = num + 1;
+		}
+		total = total + count;
+		count = 0;
 		str++;
 	}
 	va_end(argptr);
-	return (0);
-}
-
-int	main(void)
-{
-	ft_printf("Hello this %d is a %c", 6, 'G');
-	return (0);
+	return (num+ total);
 }
