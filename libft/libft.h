@@ -61,7 +61,7 @@ t_list	*ft_lstmap(t_list *list, void *(*f)(void*), void(*del)(void*));
 
 /* Own Functions */
 int		ft_putnbr_base_fd( int nbr, char *base, int fd);
-int		ft_putunsignbr_fd(unsigned int n, int fd);
+int		ft_putunsignbr_fd(unsigned long n, int fd);
 
 /* ft_put - modified to return no of chars printed */
 
