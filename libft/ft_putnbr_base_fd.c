@@ -29,9 +29,9 @@ static int	check_base(char *base)
 	return (1);
 }
 
-int	ft_putnbr_base_fd( int nbr, char *base, int fd)
+int	ft_putnbr_base_fd( unsigned long nbr, char *base, int fd)
 {
-	unsigned int	unsgnum;
+	unsigned long	unsgnum;
 	unsigned int	blen;
 	int 			len;
 
