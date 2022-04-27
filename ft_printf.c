@@ -6,7 +6,7 @@
 /*   By: vvelayut <vvelayut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 19:00:29 by vvelayut          #+#    #+#             */
-/*   Updated: 2022/04/27 12:03:40 by vvelayut         ###   ########.fr       */
+/*   Updated: 2022/04/27 16:42:55 by vvelayut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,33 +15,46 @@
 
 char	check_format(const char *str, va_list argptr)
 {
-	char			format;
+	int			format;
 	int				num;
 	char*			word;
+	unsigned long 	ulong;
 
-	format = '\0';
+	format = 0;
 	if (*str == 'c')
 	{
-
+		num = va_arg(argptr, int);
+		format = ft_putchar_fd(num, 1);
 	}
 		if (*str == 's')
 	{
 		word = va_arg(argptr, char*);
-		ft_putstr_fd(word, 1);
+		format = ft_putstr_fd(word, 1);
 	}
 	if ((*str == 'd') || (*str == 'i'))
 	{
 		num = va_arg(argptr, int);
-		ft_putnbr_fd(num, 1);
+		format = ft_putnbr_fd(num, 1);
 	}	
 	if (*str == 'u')
 	{
-//		unum = va_arg(argptr, int);
-		ft_putunsignbr_fd(va_arg(argptr, int), 1);
+		format = ft_putunsignbr_fd(va_arg(argptr, unsigned int), 1);
+	}
+	if (*str == 'p')
+	{
+		ulong = va_arg(argptr,unsigned long);
+		format = ft_putstr_fd("0x", 1);
+		format = format + ft_putunsignbr_fd(ulong, 1);
+	}
+	if (*str == 'x')
+	{
+		num = va_arg(argptr, int);
+		format = ft_putnbr_base_fd(num, "0123456789abcdef", 1);
 	}		
 	if (*str == '%')
 	{
 		write(1, "%", 1);
+		format = format + 1;
 	} 
 	return (format);
 }
