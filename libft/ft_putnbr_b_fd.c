@@ -29,7 +29,7 @@ static int	check_base(char *base)
 	return (1);
 }
 
-int	ft_putnbr_base_fd( unsigned long nbr, char *base, int fd)
+int	ft_putnbr_b_fd( unsigned long nbr, char *base, int fd)
 {
 	unsigned long	unsgnum;
 	unsigned int	blen;
@@ -45,8 +45,8 @@ int	ft_putnbr_base_fd( unsigned long nbr, char *base, int fd)
 	{
 		if (unsgnum >= blen)
 		{
-			len = len + ft_putnbr_base_fd(unsgnum / blen, base, fd);
-			len = len + ft_putnbr_base_fd(unsgnum % blen, base, fd);
+			len = len + ft_putnbr_b_fd(unsgnum / blen, base, fd);
+			len = len + ft_putnbr_b_fd(unsgnum % blen, base, fd);
 		}
 		else
 		{
