@@ -1,5 +1,6 @@
 #include "libft.h"
 #include <stdio.h>
+
 /* strtrim - returns string with characters in set trimmed from front & back */
 /* Protected - null *s1. Also chars in set are tested in any order */
 static size_t	chk_f(char const *s1, char const *set, size_t lstr, size_t lset)
