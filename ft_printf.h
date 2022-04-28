@@ -7,5 +7,5 @@
 
 /* Mandatory */
 int		ft_printf(const char* str, ...);
-
+int		check_format(const char *str, va_list argptr);
 #endif
