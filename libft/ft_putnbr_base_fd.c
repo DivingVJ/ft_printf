@@ -43,11 +43,6 @@ int	ft_putnbr_base_fd( unsigned long nbr, char *base, int fd)
 	blen = ft_strlen(base);
 	if (check_base(base) == 1)
 	{
-/*		if (nbr < 0)
-		{
-			len = len + ft_putchar_fd('-', fd);
-			unsgnum = nbr * -1;
-		} */
 		if (unsgnum >= blen)
 		{
 			len = len + ft_putnbr_base_fd(unsgnum / blen, base, fd);
