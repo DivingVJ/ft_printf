@@ -1,25 +1,34 @@
 NAME = libftprintf.a
 CC = gcc
 CFLAG = -Wall -Wextra -Werror
+  #PATH = libft/
 
-SRC =	ft_printf.c
+SRC =	ft_printf.c check_format.c
+# INCLUDES = -Ilibft
+# LIB	= -Llibft -lft
 
 OBJ = $(patsubst %.c, %.o, $(SRC))
 #DEP = $(patsubst %.a, %.h, $(NAME))
 
+LIBFT = libft/libft.a
 LIBFT_PATH = libft/
+LIBFTOBJ = libft/*.o
 
 all: $(NAME) 
 
-$(NAME): $(OBJ) 
-	ar rcs $(NAME) $(OBJ)
-	@make -C libft/
+
+$(NAME): $(OBJ) $(LIBFT)
+	ar rcs $(NAME) $(OBJ) $(LIBFTOBJ)
+#	@make -C libft/
 
 $(OBJ): $(SRC) $(DEP)
 	$(CC) $(CFLAG) -c $(SRC)
 
+$(LIBFT) :
+	make re -C $(LIBFT_PATH)
+
 clean:
-	rm -f $(OBJ) $(BONUS_OBJ)
+	rm -f $(OBJ)
 	@make clean -C $(LIBFT_PATH)
 
 fclean: clean	
