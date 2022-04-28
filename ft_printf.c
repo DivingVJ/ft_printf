@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvelayut <vvelayut@student.42kl.edu.my>    +#+  +:+       +#+        */
+/*   By: vvelayut <vvelayut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 19:00:29 by vvelayut          #+#    #+#             */
-/*   Updated: 2022/04/28 00:40:00 by vvelayut         ###   ########.fr       */
+/*   Updated: 2022/04/28 14:27:53 by vvelayut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft/libft.h"
 
-char	check_format(const char *str, va_list argptr)
+int	check_format(const char *str, va_list argptr)
 {
 	int			format;
 	int				num;
@@ -36,7 +36,6 @@ char	check_format(const char *str, va_list argptr)
 		ulong = (unsigned long)va_arg(argptr,void *);
 		format = ft_putstr_fd("0x", 1);
 		format = format + ft_putnbr_base_fd(ulong,"0123456789abcdef",  1);
-
 	}
 	if ((*str == 'd') || (*str == 'i'))
 	{
@@ -93,5 +92,5 @@ int	ft_printf(const char *str, ...)
 		str++;
 	}
 	va_end(argptr);
-	return (num+ total);
+	return (num + total);
 }
