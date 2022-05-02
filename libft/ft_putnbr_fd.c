@@ -3,7 +3,6 @@
 /* putnbr_fd - opens an external file and writes in  int n */
 int	ft_putnbr_fd(int n, int fd)
 {
-	char	c;
 	int		len;
 
 	len = 0;
@@ -26,8 +25,7 @@ int	ft_putnbr_fd(int n, int fd)
 	}
 	else
 	{
-		c = n + '0';
-		len = len + ft_putchar_fd(c, fd);
+		len = len + ft_putchar_fd((n + '0'), fd);
 	}
 	return (len);
 }

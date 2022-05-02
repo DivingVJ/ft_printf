@@ -13,7 +13,7 @@ int	parse_hex(unsigned long ulong, char type)
 	if (type == 'p')
 	{
 		len = ft_putstr_fd("0x", 1);
-		len = len + ft_putnbr_b_fd(ulong, base, 1);	
+		len = len + ft_putnbr_b_fd(ulong, base, 1);
 	}
 	if (type == 'x')
 		len = ft_putnbr_b_fd(ulong, base, 1);

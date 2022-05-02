@@ -33,12 +33,12 @@ int	ft_putnbr_b_fd( unsigned long nbr, char *base, int fd)
 {
 	unsigned long	unsgnum;
 	unsigned int	blen;
-	int 			len;
+	int				len;
 
 	blen = 0;
 	len = 0;
 	if (fd == -1)
-	return (0);
+		return (0);
 	unsgnum = nbr;
 	blen = ft_strlen(base);
 	if (check_base(base) == 1)
