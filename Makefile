@@ -1,25 +1,20 @@
 NAME = libftprintf.a
 CC = gcc
 CFLAG = -Wall -Wextra -Werror
-  #PATH = libft/
 
 SRC =	ft_printf.c check_format.c parse_hex.c
-# INCLUDES = -Ilibft
-# LIB	= -Llibft -lft
 
 OBJ = $(patsubst %.c, %.o, $(SRC))
-#DEP = $(patsubst %.a, %.h, $(NAME))
 
 LIBFT = libft/libft.a
 LIBFT_PATH = libft/
-LIBFTOBJ = libft/*.o
+LIBFTOBJ = libft/ft_put*.o libft/ft_strlen.o
 
 all: $(NAME) 
 
 
 $(NAME): $(OBJ) $(LIBFT)
 	ar rcs $(NAME) $(OBJ) $(LIBFTOBJ)
-#	@make -C libft/
 
 $(OBJ): $(SRC) $(DEP)
 	$(CC) $(CFLAG) -c $(SRC)
@@ -27,6 +22,10 @@ $(OBJ): $(SRC) $(DEP)
 $(LIBFT) :
 	make re -C $(LIBFT_PATH)
 
+so:
+	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRC)
+	gcc -nostartfiles -shared -o libft.so $(OBJ)
+	
 clean:
 	rm -f $(OBJ)
 	@make clean -C $(LIBFT_PATH)
