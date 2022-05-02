@@ -22,10 +22,6 @@ $(OBJ): $(SRC) $(DEP)
 $(LIBFT) :
 	make re -C $(LIBFT_PATH)
 
-so:
-	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRC)
-	gcc -nostartfiles -shared -o libft.so $(OBJ)
-	
 clean:
 	rm -f $(OBJ)
 	@make clean -C $(LIBFT_PATH)
