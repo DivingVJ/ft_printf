@@ -3,7 +3,7 @@ CC = gcc
 CFLAG = -Wall -Wextra -Werror
   #PATH = libft/
 
-SRC =	ft_printf.c check_format.c
+SRC =	ft_printf.c check_format.c parse_hex.c
 # INCLUDES = -Ilibft
 # LIB	= -Llibft -lft
 
