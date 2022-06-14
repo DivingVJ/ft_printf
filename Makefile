@@ -2,7 +2,7 @@ NAME = libftprintf.a
 CC = gcc
 CFLAG = -Wall -Wextra -Werror
 
-SRC =	ft_printf.c 
+SRC =	ft_printf.c
 
 OBJ = $(patsubst %.c, %.o, $(SRC))
 
