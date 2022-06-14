@@ -20,7 +20,7 @@ $(OBJ): $(SRC) $(DEP)
 	$(CC) $(CFLAG) -c $(SRC)
 
 $(LIBFT) :
-	make re -C $(LIBFT_PATH)
+	@make -C $(LIBFT_PATH)
 
 clean:
 	rm -f $(OBJ)
